@@ -1,6 +1,6 @@
 NoodleRave
 ==========
-Instant ultra cool sparkline graphs.
+Instant ultra cool looking sparkline graphs.
 
 ![header](http://i.imgur.com/w5N6GMG.png?1?8155)
 
