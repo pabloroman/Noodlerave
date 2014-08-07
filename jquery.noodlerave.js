@@ -55,6 +55,9 @@ $.fn.noodlerave = function(options) {
 
 	function curve(points,ctx){
 		
+		/*
+			http://stackoverflow.com/a/7058606
+		*/
 		ctx.lineWidth = (options.weight-2)*options.capProportion;
 		ctx.strokeStyle = fill(ctx);
 		ctx.beginPath();
