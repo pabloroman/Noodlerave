@@ -1,10 +1,15 @@
-$.fn.noodlerave = function(options) {
-
+$.fn.noodlerave = function(_options) {
+	
+	var options = JSON.parse(JSON.stringify(_options));
+	/*options needs to be cloned so the original _options remains pure*/
 
 	var $this   = this,
-	    width   = this.width()*2,
-	    height  = this.height()*2,
 	    options = defaults(options);
+	    
+	var width   = options.width*options.resolution,
+	    height  = options.height*options.resolution;
+
+
 
 
 	function defaults(options) {
@@ -12,7 +17,7 @@ $.fn.noodlerave = function(options) {
 		if(!options) {
 			options = {};
 		}
-
+		
 		if(options.values === undefined) {
 			options.values = $this.data('values').split(',');
 		}
@@ -20,15 +25,26 @@ $.fn.noodlerave = function(options) {
 			options.weight = $this.data('weight')?$this.data('weight'):6;
 		}
 		if(options.fill === undefined) {
-			options.fill = $this.data('fill')?$this.data('fill'):'red';
+			options.fill = $this.data('fill')?$this.data('fill'):'blue';
 		}
 		if(options.cap === undefined) {
 			options.cap = $this.data('cap')?$this.data('cap'):true;
 		}
+		
 		if(options.capProportion === undefined) {
 			options.capProportion = $this.data('capProportion')?$this.data('capProportion'):.9;
 		}
+		if(options.resolution === undefined) {
+			options.resolution = $this.data('resolution')?$this.data('resolution'):2;
+		}
 		
+		if(options.width === undefined) {
+			options.width = $this.data('width')?$this.data('width'):$this.width();
+		}
+		if(options.height === undefined) {
+			options.height = $this.data('height')?$this.data('height'):$this.height();
+		}
+				
 		return options;
 		
 	}
@@ -98,7 +114,7 @@ $.fn.noodlerave = function(options) {
 		
 		var count = values.length;
 		
-		var unit = (width-(options.weight*2))/(values.length-2);
+		var unit = (width-(options.weight*options.resolution))/(values.length-2);
 		var i = options.weight+unit*-1;
 		
 		values.map(function(value){
@@ -130,21 +146,36 @@ $.fn.noodlerave = function(options) {
 
 	
 	/*gogogo*/
-	$this.append('<div class="__noodlerave-base" style="position:relative"></div>');
-	var points  = process(options.values);
-	var ctx     = create2DCanvasElement($this.find('.__noodlerave-base'));
+	if($this.length > 1) {
+		
+		var rtn = [];
+		$this.each(function(){
+		console.log(_options);
+			rtn.push($(this).noodlerave(_options));
+		})
+		return rtn;
+		
+	} else {
 
-	curve(points,ctx);
-	if(options.cap === true){
-		cap(points,ctx);	
+		if(!$this.data('__noodleraved')) {
+			$this.append('<div class="__noodlerave-base" style="position:relative"></div>');
+			var points  = process(options.values);
+			var ctx     = create2DCanvasElement($this.find('.__noodlerave-base'));
+			
+			curve(points,ctx);
+			if(options.cap === true){
+				cap(points,ctx);	
+			}
+		}
+		$this.data('__noodleraved',true)
+		
+		return({
+			$element: $this,
+			points: points,
+			ctx: ctx,
+			options: options
+		});
+		
 	}
-	
-	return {
-		$element: $this,
-		points: points,
-		ctx: ctx,
-		options: options
-	}
-
 
 }
