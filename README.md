@@ -15,27 +15,21 @@ Import jQuery, Import jquery.noodlerave.js and create a div to hold your graph. 
 After making your element just initialize Noodlerave and you are good to go.
 
     <div class="shirataki"></div>
-    $(function(){
-      $('.shirataki').noodlerave({
+    $('.shirataki').noodlerave({
         values: [1,23,65,12,64,23]
-      });
     });
     
     /*or*/
     
     <div class="udon" data-values="1,23,65,12,64,23"></div>
-    $(function(){
-      $('.udon').noodlerave();
-    });
+    $('.udon').noodlerave();
     
     /*or*/
     
     <div class="bakmi" data-height="80" data-values="1,23,65,12,64,23"></div>
-    $(function(){
-      $('.bakmi').noodlerave({
+    $('.bakmi').noodlerave({
         width:  90,
         weight: 12
-      });
     });
   
   
