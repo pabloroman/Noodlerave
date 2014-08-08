@@ -32,7 +32,7 @@ After making your element just initialize Noodlerave and you are good to go.
     
     <div class="bakmi" data-height="80" data-values="1,23,65,12,64,23"></div>
     $(function(){
-      $('.noodle').noodlerave({
+      $('.bakmi').noodlerave({
         width:  90,
         weight: 12
       });
