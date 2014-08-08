@@ -1,10 +1,10 @@
-NoodleRave
+Noodlerave
 ==========
 Instant ultra cool looking sparkline graphs.
 
 ![header](http://i.imgur.com/w5N6GMG.png?1?8155)
 
-NoodleRave is a concise jQuery plugin that helps you make soft looking sparkline graphs that look like noodles. The rave part is because you can also add gradients. It's also retina ready and responsive (just don't resize your browser)
+Noodlerave is a concise jQuery plugin that helps you make soft looking sparkline graphs that look like noodles. The rave part is because you can also add gradients. It's also retina ready and responsive (just don't resize your browser)
 
 There's not much more to it, really.
 
@@ -12,7 +12,7 @@ Usage
 --
 
 Import jQuery, Import jquery.noodlerave.js and create a div to hold your graph. Noodlerave will try to get the CSS height and width (letting you do stuff like full screen graphs), but you can send them as parameters using `data-width` and `data-height`.
-After making your element just initialize noodlerave and you are good to go.
+After making your element just initialize Noodlerave and you are good to go.
 
     <div class="shirataki"></div>
     $(function(){
