@@ -150,7 +150,6 @@ $.fn.noodlerave = function(_options) {
 		
 		var rtn = [];
 		$this.each(function(){
-		console.log(_options);
 			rtn.push($(this).noodlerave(_options));
 		})
 		return rtn;
