@@ -104,9 +104,10 @@ $.fn.noodlerave = function(_options) {
 	function process(values) {
 		
 		var points = [];
-		var max = Math.max.apply( Math, values );
-		var min = Math.min.apply( Math, values );
-
+		var max = Math.max.apply(Math, values);
+		var min = Math.min.apply(Math, values);
+		var growth = Math.min(1, Math.max(0.05, ((max-min)/max)));
+		
 		/*creates a very rough estimate of whether the chart starts pointing up or down*/
 		values.unshift(
 			(values[1]-values[0] > 0)?min:max
@@ -120,7 +121,7 @@ $.fn.noodlerave = function(_options) {
 		values.map(function(value){
 			points.push({
 				x: i,
-				y: height-(options.weight + (parseInt(value)-min)*((height-options.weight)-options.weight)/(max-min))
+				y: height-(options.weight + (parseInt(value)-min)*((height-options.weight)-options.weight)/(max-min))*growth
 			});
 			i += unit;
 		});
