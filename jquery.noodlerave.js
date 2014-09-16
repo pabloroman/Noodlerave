@@ -121,7 +121,7 @@ $.fn.noodlerave = function(_options) {
 		values.map(function(value){
 			points.push({
 				x: i,
-				y: height-(options.weight + (parseInt(value)-min)*((height-options.weight)-options.weight)/(max-min))*growth
+				y: height-(options.weight + (parseInt(value)-min)*((height-options.weight)-options.weight)/(max-min))*growth-((height/2)*(1-growth))
 			});
 			i += unit;
 		});
